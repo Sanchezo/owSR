@@ -1,6 +1,9 @@
-# Desc
+# Description
 
-Bot that can show you your overwatch rank
+Simple and easy to install discord bot that allow you to check Overwatch rank of specified person.
+Commands:
+`.sr <battletag>` Shows specified person's rank
+`.help` Shows info about commands
 
 
 ## Hosting on glitch
