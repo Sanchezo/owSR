@@ -28,18 +28,8 @@ client.on('ready', ready =>{
    
   
 })
-client.music = require("discord.js-musicbot-addon");
 
-// Now we start the music module.
-client.music.start(client, {
-  // Set the api key used for YouTube.
-  botPrefix:".",
-  youtubeKey: ""
-  
-});
-client.on("error", error=>{
 
-})
 client.on('message', message =>{
   
 if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -51,86 +41,13 @@ console.log(res)
   if(command=="help"){
      var embed = new Discord.MessageEmbed()
     .addField(".sr", "Shows you SR of specified person. Usage: .sr <battletag>")
-    .addField(".server", "Shows you our server ip")
-    .addField(".error", "Shows you how to resolve most of the problems")
+  
     
     
   message.channel.sendEmbed(embed);
     
   }
-  if(command=="error"){
- 
-    const embed = new Discord.MessageEmbed()
-  .setTitle("Problem Solving")
-  .setAuthor("Rebels Bot", "https://rebels-games.com/wp-content/uploads/2018/04/Logo-Rebels-64x64.png")
-  /*
-   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-   */
-   
-  .setColor(0x00AE86)
-  .setDescription("Easiest way to eliminate problem (most problems).")
-  .setFooter("rebels-games.com", "https://rebels-games.com/wp-content/uploads/2018/04/Logo-Rebels-64x64.png")
   
-  .setThumbnail("https://rebels-games.com/wp-content/uploads/2018/04/Logo-Rebels-64x64.png")
-  /*
-   * Takes a Date object, defaults to current date.
-   */
-  .setTimestamp()
-  
-  .addField("-",
-   " Disconnect from server." )
-  /*
-   * Inline fields may not display as inline if the thumbnail and/or image is too big.
-   */
-  .addField( "-","Turn off the game" )
-  /*
-   * Blank field, useful to create some space.
-   */
-
-  .addField("-","Delete contents of folder in %appdata%\SpaceEngineers\ShaderCache2")
-  .addField("-","Reset Steam" )
-  .addField("-"," Connect with server again." )
-    
- 
-  message.channel.send({embed});
-}
-  if(command=="server"){
- 
-    const embed = new Discord.MessageEmbed()
-  .setTitle("Server IP")
-  .setAuthor("Rebels Bot", "https://rebels-games.com/wp-content/uploads/2018/04/Logo-Rebels-64x64.png")
-  /*
-   * Alternatively, use "#00AE86", [0, 174, 134] or an integer number.
-   */
-   
-  .setColor(0x00AE86)
-  .setDescription("IP of our servers")
-  .setFooter("rebels-games.com", "https://rebels-games.com/wp-content/uploads/2018/04/Logo-Rebels-64x64.png")
-  
-  .setThumbnail("https://rebels-games.com/wp-content/uploads/2018/04/Logo-Rebels-64x64.png")
-  /*
-   * Takes a Date object, defaults to current date.
-   */
-  .setTimestamp()
- 
-    .addField("-","Space Engineers")
-  .addField("Name:   Omega EU (Europe)",
-   " s1.rebels-games.com:27016 116.202.132.33:27016" )
-  /*
-   * Inline fields may not display as inline if the thumbnail and/or image is too big.
-   */
-  .addField( "Omega SA (South America)","s2.rebels-games.com:27017  209.13.86.245:27017" )
-  /*
-   * Blank field, useful to create some space.
-   */
-
-  .addField("-","Rust")
-  .addField("Name:   Omega EU (Europe)","IP:     s1.rebels-games.com:27016 116.202.132.33:27016" )
-  .addField("Name:   Omega SA (South America)"," IP:     s2.rebels-games.com:27017 209.13.86.245:27017" )
-    
- 
-  message.channel.send({embed});
-}
 	if(command=="sr"){
 	if(args.length>6) {
     message.channel.send("You haven't provided battletag") 
