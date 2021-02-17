@@ -1,15 +1,14 @@
 const ow = require('overwatch-stats-api');
 const http = require('http');
 const express = require('express');
-const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
+const server = express();
+server.all('/', (req, res)=>{
+    res.send('Your bot is alive!')
+})
+function keepAlive(){
+    server.listen(3000, ()=>{console.log("Server is Ready!")});
+}
+
 
 const Discord= require("discord.js")
 const client = new Discord.Client({disableEveryone: true})
@@ -82,32 +81,41 @@ console.log(res)
   }else{
     var support="no placements were played"
   }
+	const exampleEmbed = {
+	color: "#0099ff",
+	title: 'owSR',
 	
-  const exampleEmbed = new Discord.MessageEmbed()
-  
-	.setColor('#0099ff')
-	.setTitle('OverSR')
-	.setURL('https://discord.js.org/')
-	.setAuthor('OverSR', 'https://i.imgur.com/FXEcoUt.png', 'https://discord.js.org')
-	.setDescription('Shows SR of specified person')
-	.setThumbnail(`${stats.iconURL}`)
-	.addFields(
-      
-		{ 
-      name: 'Player', value: `${args}` },
-    {name:"Level", value:`${stats.level}`},
-    
-    {name:"Stars", value:`${stats.prestige}`},
+	author: {
+		name: 'OverSR',
+		icon_url: 'https://i.imgur.com/wSTFkRM.png',
+		url: 'https://discord.js.org',
+	},
+	description: 'Shows SR of specified person',
+	thumbnail: {
+		url: 'https://i.imgur.com/wSTFkRM.png',
+	},
+	fields: [
+		{
+			name: 'Player',
+			value: `${args}`,
+		},
+	 {name:"Stars", value:`${stats.prestige}`},
     {name: 'Tank', value: `${tanksr}` },
 		
 		{ name: 'DPS', value: `${dmgsr}`},
-		{ name: 'Support', value: `${support}`},
-	)
-	
-	.setImage(stats.rank.damage.tierIcon)
-	.setTimestamp()
-	.setFooter('OverSR', 'https://i.imgur.com/FXEcoUt.png');
-	message.channel.send(exampleEmbed).catch(error =>{
+		{ name: 'Support', value: `${support}`}
+	],
+	image: {
+		url: stats.iconURL,
+	},
+	timestamp: new Date(),
+	footer: {
+		text: 'OverSR',
+		icon_url: 'https://i.imgur.com/FXEcoUt.png',
+	},
+};
+
+    message.channel.send(exampleEmbed).catch(error =>{
     message.channel.send("Could not send SR because placement were not played")
   })
   
@@ -123,4 +131,4 @@ console.log(res)
 	
 	
 
-client.login("")
+client.login("NjUzMjk5NzE2NDkwMTMzNTI3.Xe0-xg.CoPAlPCqUgMU07o4ySuElWU4_-o")
